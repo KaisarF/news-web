@@ -1,4 +1,4 @@
-import { Flex, Typography, Carousel, Card, Input } from "antd";
+import { Flex, Typography } from "antd";
 
 import api from '../services/Axios'
 
@@ -8,7 +8,7 @@ import TrendingTopics from "../components/TrendingTopics";
 import TopicsList from "../components/TopicsList";
 import SearchNews from "../components/SearchNews";
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph,} = Typography;
 
 // console.log('API Key:', process.env.REACT_APP_NEWS_API_KEY);
 

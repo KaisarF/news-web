@@ -1,5 +1,5 @@
 import {  Typography, Carousel, Card, Modal, Button } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const { Title, Paragraph, Text} = Typography;
 
@@ -7,6 +7,10 @@ interface Article {
     title: string;
     description: string;
     url: string;
+    content: string;
+    urlToImage: string;
+    source: { name: string };
+    publishedAt: string;
 
 }
 
@@ -26,7 +30,7 @@ function formatDate(dateString:string) {
 
 
 
-export default function TrendingTopics({trendNews}) {
+export default function TrendingTopics({ trendNews }: { trendNews: Article[] }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentArticle, setCurrentArticle] = useState<Article | null>(null);
     

@@ -23,11 +23,15 @@ interface Article {
     title: string;
     description: string;
     url: string;
+    content: string;
+    urlToImage: string;
+    source: { name: string };
+    publishedAt: string;
 
 }
 
 export default function SearchNews() {
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState<Article[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentArticle, setCurrentArticle] = useState<Article | null>(null);
     const [searchValue, setSearchValue] = useState("");

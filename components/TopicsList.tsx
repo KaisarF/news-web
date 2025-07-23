@@ -1,7 +1,18 @@
 import { Tabs, Typography, List, Modal, Button} from "antd"
 import { useEffect, useState } from "react";
 
-function formatDate(dateString) {
+interface Article {
+    title: string;
+    description: string;
+    url: string;
+    content: string;
+    urlToImage: string;
+    source: { name: string };
+    publishedAt: string;
+
+}
+
+function formatDate(dateString:string) {
     if (!dateString) return "Unknown";
     const date = new Date(dateString);
     return date.toLocaleString('id-ID', {
@@ -32,10 +43,10 @@ const { Title, Paragraph, Text} = Typography;
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 export default function TopicsList(){
-    const [categoryNews, setCategoryNews] = useState([]);
+    const [categoryNews, setCategoryNews] = useState<Article[]>([]);
     const [selectedCategory, setSelectedCategory] = useState(categories[0].key);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [currentArticle, setCurrentArticle] = useState(null)
+    const [currentArticle, setCurrentArticle] = useState<Article | null>(null)
     
     useEffect(()=>{
         const getCategoryNews = async ()=>{
@@ -49,7 +60,7 @@ export default function TopicsList(){
         }
         getCategoryNews()
     },[selectedCategory])
-    const showModal = (article) => {
+    const showModal = (article:Article) => {
         setCurrentArticle(article);
         setIsModalOpen(true);
     };
@@ -127,7 +138,7 @@ export default function TopicsList(){
                             <Paragraph>{currentArticle?.content}</Paragraph>
                             <Text strong>sources: {currentArticle?.source?.name ? currentArticle.source.name : "Unknown"}</Text>
                             <br/>
-                            <Text strong>publish: {formatDate(currentArticle?.publishedAt)}</Text>
+                            <Text strong>publish: {formatDate(currentArticle?.publishedAt ?? "")}</Text>
                         </Modal>
                     </div>
                 )
